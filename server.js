@@ -1,10 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const crons = require("./crons");
 const app = express();
 const CryptocurrencyMD = require("./models/cryptocurrency");
-
 require("dotenv").config();
+const crons = require("./crons");
 
 const PORT = process.env.PORT || 8080;
 const DB_CONNECTION = process.env.DB_CONNECTION;
