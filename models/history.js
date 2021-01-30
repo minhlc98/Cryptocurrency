@@ -23,13 +23,13 @@ const historySchema = Schema({
   percent_change_24h: { type: Number, required: true },
   percent_change_7d: { type: Number, required: true },
   market_cap: { type: Number, required: true },
-  app_created_at: { type: Date, default: Date.now },
   last_updated: { type: Date, default: Date.now },
+  history_created_at: { type: Date, default: Date.now },
 }, { versionKey: false });
 
 const INDEX_SCHEMA_FILTER_1 = { id: 1, last_updated: -1 };
 
 historySchema.index(INDEX_SCHEMA_FILTER_1);
-historySchema.index({ app_created_at: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 153 }); // 5 months
+historySchema.index({ history_created_at: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 153 }); // 5 months
 
 module.exports = mongoose.model("History", historySchema);
