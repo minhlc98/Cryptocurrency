@@ -59,6 +59,7 @@ module.exports = {
           percent_change_24h: _.get(crypto, "quote['USD'].percent_change_24h"),
           percent_change_7d: _.get(crypto, "quote['USD'].percent_change_7d"),
           market_cap: _.get(crypto, "quote['USD'].market_cap"),
+          history_created_at: new Date()
         };
         await CryptocurrencyMD.findOneAndUpdate(
           { id: cryptocurrency.id },

@@ -5,7 +5,7 @@ const CallNewData = cron.schedule("0 */5 * * * *", async () => {
   if (!global.updatingNewData) {
     global.updatingNewData = true;
     await callNewData.start();
-    lobal.updatingNewData = false;
+    global.updatingNewData = false;
   }
 }, { scheduled: false });
 
