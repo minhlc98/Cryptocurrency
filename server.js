@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const crons = require("./crons");
@@ -23,6 +24,7 @@ mongoose.connect(
   }
 );
 
+app.use(cors());
 app.use("/", require("./routers/cryptocurrency"));
 
 app.listen(PORT, () => console.log(`App is running on port ${PORT}`));
