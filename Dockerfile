@@ -4,4 +4,4 @@ COPY package.json /app
 RUN npm install --production
 COPY . /app  
 EXPOSE 80
-RUN node server.js
+CMD node server.js
