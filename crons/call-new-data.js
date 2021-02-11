@@ -5,15 +5,26 @@ const cryptocurrencies = require("../list_cryptocurrency");
 const CryptocurrencyMD = require("../models/cryptocurrency");
 const HistoryMD = require("../models/history");
 
-const API_KEY = process.env.API_KEY;
 const API_URL = process.env.API_URL;
+
+let justUsedApi1 = false;
+
+const getApiKey = () => {
+  if (justUsedApi1) {
+    justUsedApi1 = false;
+    return process.env.API_KEY_2;
+  } else {
+    justUsedApi1 = true;
+    return process.env.API_KEY_1;
+  } 
+}
 
 module.exports = {
   start: async () => {
     const results = await fetch(API_URL, {
       method: "get",
       headers: {
-        "X-CMC_PRO_API_KEY": API_KEY,
+        "X-CMC_PRO_API_KEY": getApiKey(),
       },
       json: true,
       gzip: true,
