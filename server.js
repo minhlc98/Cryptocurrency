@@ -5,7 +5,7 @@ require("dotenv").config();
 const crons = require("./crons");
 
 const PORT = process.env.PORT || 8080;
-const DB_CONNECTION = process.env.DB_CONNECTION || "mongodb://localhost:27017/myapp";
+const DB_CONNECTION = process.env.DB_CONNECTION || "mongodb://db:27017/myapp";
 
 mongoose.connect(
   DB_CONNECTION,
@@ -19,6 +19,7 @@ mongoose.connect(
     if (err) {
       throw err;
     }
+    console.log("Connect success to mongodb");
     crons.start();
   }
 );
