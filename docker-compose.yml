@@ -8,14 +8,18 @@ services:
       - app_network
     volumes:
       - .docker/data/db:/data/db
+    restart: unless-stopped
   web: 
     build: .
+    environment: 
+      - DB_CONNECTION=mongodb://db:27017/cryptocurrency
     ports:
       - "8080:8080"
     networks: 
       - app_network
     depends_on: 
       - db
+    restart: unless-stopped
 networks: 
   app_network:
     driver: bridge
