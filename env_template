@@ -1,0 +1,4 @@
+DB_CONNECTION=
+API_KEY_1=
+API_KEY_2=
+API_URL=https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=200&convert=USD
