@@ -21,6 +21,7 @@ const getApiKey = () => {
 
 module.exports = {
   start: async () => {
+    const API_KEY = getApiKey();
     if(!API_KEY || !API_URL) {
       console.log("Not found API_KEY and API_URL");
       return;
@@ -28,7 +29,7 @@ module.exports = {
     const results = await fetch(API_URL, {
       method: "get",
       headers: {
-        "X-CMC_PRO_API_KEY": getApiKey(),
+        "X-CMC_PRO_API_KEY": API_KEY,
       },
       json: true,
       gzip: true,
