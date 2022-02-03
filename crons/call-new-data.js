@@ -10,6 +10,10 @@ const API_URL = process.env.API_URL;
 
 module.exports = {
   start: async () => {
+    if(!API_KEY || !API_URL) {
+      console.log("Not found API_KEY and API_URL");
+      return;
+    }
     const results = await fetch(API_URL, {
       method: "get",
       headers: {
