@@ -30,6 +30,6 @@ const historySchema = Schema({
 const INDEX_SCHEMA_FILTER_1 = { id: 1, last_updated: -1 };
 
 historySchema.index(INDEX_SCHEMA_FILTER_1);
-historySchema.index({ history_created_at: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 100 }); // 100 days
+historySchema.index({ history_created_at: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 30 }); // 30 days
 
 module.exports = mongoose.model("History", historySchema);
