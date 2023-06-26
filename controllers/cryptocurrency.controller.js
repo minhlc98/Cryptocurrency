@@ -1,4 +1,4 @@
-const CryptocurrencyMD = require("../models/cryptocurrency");
+const CryptocurrencyMD = require("../models/cryptocurrency.model");
 
 module.exports = {
   get: async (req, res) => {

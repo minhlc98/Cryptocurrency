@@ -23,8 +23,8 @@ const INDEX_SCHEMA_FILTER_1 = { id: 1 };
 const INDEX_SCHEMA_FILTER_2 = { slug: 1 };
 const INDEX_SCHEMA_FILTER_3 = { cmc_rank: 1 };
 
-schemaCryptocurrency.index(INDEX_SCHEMA_FILTER_1);
-schemaCryptocurrency.index(INDEX_SCHEMA_FILTER_2);
+schemaCryptocurrency.index(INDEX_SCHEMA_FILTER_1, { unique: true });
+schemaCryptocurrency.index(INDEX_SCHEMA_FILTER_2), { unique: true };
 schemaCryptocurrency.index(INDEX_SCHEMA_FILTER_3);
 
 module.exports = mongoose.model("Cryptocurrency", schemaCryptocurrency);

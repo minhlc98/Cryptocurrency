@@ -2,15 +2,20 @@ const fetch = require("node-fetch");
 const _ = require("lodash");
 const Promise = require("bluebird");
 const cryptocurrencies = require("../list_cryptocurrency");
-const CryptocurrencyMD = require("../models/cryptocurrency");
-const HistoryMD = require("../models/history");
+const CryptocurrencyMD = require("../models/cryptocurrency.model");
+const HistoryMD = require("../models/history.model");
 
 const API_URL = process.env.API_URL;
 
 let justUsedApi1 = false;
 
-// Cheat :))
 const getApiKey = () => {
+  if (!(process.env.API_KEY_1 && process.env.API_KEY_2)) return null;
+
+  if (process.env.API_KEY_1 && !process.env.API_KEY_2) return process.env.API_KEY_1;
+
+  if (!process.env.API_KEY_1 && process.env.API_KEY_2) return process.env.API_KEY_2;
+
   if (justUsedApi1) {
     justUsedApi1 = false;
     return process.env.API_KEY_2;
