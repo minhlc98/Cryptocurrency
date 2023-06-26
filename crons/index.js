@@ -1,18 +1,19 @@
 const cron = require("node-cron");
-const callNewData = require("./call-new-data");
+const config = require('../config');
+const getNewData = require("./get-new-data");
 
-const CallNewData = cron.schedule("0 */3 * * * *", async () => {
-  if (!global.updatingNewData) {
-    global.updatingNewData = true;
-    await callNewData.start();
-    global.updatingNewData = false;
+const getNewDataCron = cron.schedule(config.cron_time.get_new_data, async () => {
+  if (!global.gettingNewData) {
+    global.gettingNewData = true;
+    await getNewData.start();
+    global.gettingNewData = false;
   }
 }, { scheduled: false });
 
 module.exports = {
   start: () => {
-    if (process.env.CALL_NEW_DATA) {
-      CallNewData.start();
+    if (config.cron_active.get_new_data) {
+      getNewDataCron.start();
     }
   }
 }

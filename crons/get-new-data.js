@@ -9,6 +9,7 @@ const API_URL = process.env.API_URL;
 
 let justUsedApi1 = false;
 
+// Cheat :))
 const getApiKey = () => {
   if (justUsedApi1) {
     justUsedApi1 = false;
@@ -79,16 +80,21 @@ module.exports = {
           market_cap: _.get(crypto, "quote['USD'].market_cap"),
           history_created_at: new Date()
         };
-        await CryptocurrencyMD.findOneAndUpdate(
-          { id: cryptocurrency.id },
-          cryptocurrency,
-          {
-            new: true,
-            upsert: true, // Make this update into an upsert
-          }
-        );
+
         const History = new HistoryMD(history);
-        await History.save();
+
+        await Promise.all([
+          CryptocurrencyMD.findOneAndUpdate(
+            { id: cryptocurrency.id },
+            cryptocurrency,
+            {
+              new: true,
+              lean: true,
+              upsert: true, // Make this update into an upsert
+            }
+          ),
+          History.save()
+        ]);
       },
       { concurrency: 3 }
     );
