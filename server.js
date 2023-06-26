@@ -26,6 +26,6 @@ mongoose.connect(
 );
 
 app.use(cors());
-app.use("/", require("./routers/cryptocurrency"));
+app.use("/", require("./routers/cryptocurrency.routes"));
 
 app.listen(PORT, () => console.log(`App is running on port ${PORT}`));
