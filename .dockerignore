@@ -1,1 +1,5 @@
 node_modules
+.env
+env_template
+.gitignore
+.eslintrc.js
